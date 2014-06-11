@@ -20,9 +20,7 @@ I have compiled a kernel with the above, and here are the performance stats.
 System settings
 
 
-```bash
-
-a 
+`` 
 # sysctl -w fs.file-max=5000000
 fs.file-max = 5000000
 
@@ -61,6 +59,7 @@ This time with readdir(3)
 real	0m0.129s
 user	0m0.001s
 sys	0m0.007s
+
 ```
 
 (which oddly seems faster?)
