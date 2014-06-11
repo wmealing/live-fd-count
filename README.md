@@ -20,13 +20,14 @@ I have compiled a kernel with the above, and here are the performance stats.
 System settings
 
 
-`` 
+```
 # sysctl -w fs.file-max=5000000
 fs.file-max = 5000000
 
 ```
 
 Increase this sessions limits.
+
 ```
 # ulimit -n 1000000
 ```
