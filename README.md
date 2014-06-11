@@ -18,16 +18,26 @@ impacts for tools that frequently parse /proc/pid/status
 I have compiled a kernel with the above, and here are the performance stats.
 
 System settings
+
+
+```bash
+
+a 
 # sysctl -w fs.file-max=5000000
 fs.file-max = 5000000
 
+```
+
 Increase this sessions limits.
+```
 # ulimit -n 1000000
+```
 
 test.py had 500002 files open each time.
 
 Here are some of the performance benchmarks so far.
 
+```
 # time cat /proc/`pidof python test.py`/status |grep FD
 FDSize:	524288
 FDCount: 500002
@@ -41,14 +51,17 @@ sys	0m0.004s
 real	0m0.631s
 user	0m0.001s
 sys	0m0.485s
+```
 
-or this time with readdir(3)
+This time with readdir(3)
 
+```
 # time ./test-opendir /proc/`pidof python test.py`/fd &> /dev/null
 
 real	0m0.129s
 user	0m0.001s
 sys	0m0.007s
+```
 
 (which oddly seems faster?)
 
